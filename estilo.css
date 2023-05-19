@@ -1,3 +1,39 @@
 body {
-  background: #CCC;
+  background: #FFF5F4;
 }
+
+#produto-destaque {
+  background-color: #0078C6;
+/*   padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 30px; */
+  text-align: center;
+}
+
+#produto {
+  background: #F3EED9;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 30px;
+  
+}
+
+div {
+  /* margin: 50px; */
+  margin-left: 500px;
+  margin-right: 500px;
+/*   display: flex; */
+/*   float: right; */
+}
+
+img {
+  float: none;
+/*   margin-left: 15%; */
+/*   float: right; */
+  }
+
+/* #p1 {
+  margin-top: 8%;
+} */
