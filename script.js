@@ -1,4 +1,11 @@
 // divListaProduto.insertAdjacentHTML('afterbegin', '');
+class DeuErro extends Error {
+    constructor(mensagem){
+      super(mensagem);
+      this.name = "Meu Erro";
+    }
+  }
+
 class Produto {
     constructor(nome, datadeCadastro, descricao, preco){
         this.nome = nome
@@ -7,14 +14,25 @@ class Produto {
         this.preco = preco
     }
     mostrarProduto(){
-        return `
-        <h4 id="nome">${this.nome}</h4>
-        <p>${this.descricao}</p>
-        </br>
-        <p style="font-weight: bold">R$${this.preco},00</p>
-        <p id="p1">${this.datadeCadastro}</p>
-        </br>
-        `
+        try {
+            return this.montarProduto()
+        } catch(erro){
+            console.log(erro)
+        }
+    }
+
+    montarProduto(){
+        if(this.nome != "" && this.datadeCadastro != "" && this.descricao != "" && this.preco != ""){ 
+            return `
+            <h4 id="nome">${this.nome}</h4>
+            <p>${this.descricao}</p>
+            <p id="p6" style="font-weight: bold">R$${this.preco},00</p>
+            <p id="p1">${this.datadeCadastro}</p>
+            </br>
+            `
+        } else {
+            throw new DeuErro("Está faltando alguma informação. ;)")
+        } 
     }
 }
 
@@ -24,15 +42,27 @@ class ProdutoDestaque extends Produto {
         this.imagemDestaque = imagemDestaque
     }
     mostrarProdutoDestaque(){
-        return `
-        <img src="${this.imagemDestaque}" width="593"></img>
-        <h4 id="nomeDest">${this.nome}</h4>
-        <p id="p2">${this.descricao}</br></br> O livro se desenvolve através de cinco histórias, que fluem diretamente uma para a outra. </br>Livro extra de "Trono de Vidro" de Sarah J. Maas.</p>
-        </br>
-        <p id="p3">R$${this.preco},00</p>
-        <p id="p4">${this.datadeCadastro}</p>
-        </br>
-        `
+        try {
+            return this.montarProdutoDestaque()
+        } catch(erro){
+            console.log(erro.message)
+        }
+    }
+
+    montarProdutoDestaque(){
+        if(this.nome != "" && this.datadeCadastro != "" && this.descricao != "" && this.preco != "" && this.imagemDestaque != ""){
+            return `
+            <img src="${this.imagemDestaque}" width="593"></img>
+            <h4 id="nomeDest">${this.nome}</h4>
+            <p id="p2">${this.descricao}</br></br> O livro se desenvolve através de cinco histórias, que fluem diretamente uma para a outra. </br>Livro extra de "Trono de Vidro" de Sarah J. Maas.</p>
+            </br>
+            <p id="p3">R$${this.preco},00</p>
+            <p id="p4">${this.datadeCadastro}</p>
+            </br>
+            `
+        } else{
+            throw new DeuErro("Está faltando alguma informação. ;)")
+        }
     }
 }
 
